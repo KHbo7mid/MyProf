@@ -25,7 +25,7 @@ async def upload_document(project_id: str,file : UploadFile, app_settings :Setti
                 "signal" : result_signal
             }
         )
-    file_path=data_controller.generate_unique_filename(
+    file_path , document_id =data_controller.generate_unique_filepath(
         original_filename=file.filename,
         project_id=project_id)
     
@@ -47,6 +47,7 @@ async def upload_document(project_id: str,file : UploadFile, app_settings :Setti
         
         content={
             "signal" :  ResponseSignal.FILE_UPLOADED_SUCCESS.value,
+            "document_id" : document_id
         }
     )
     
